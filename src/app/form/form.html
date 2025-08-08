@@ -1,0 +1,55 @@
+<form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input
+      type="text"
+      id="nombre"
+      formControlName="nombre"
+      placeholder="Ingresa tu nombre"
+    />
+    <div
+      *ngIf="
+        miFormulario.get('nombre')?.invalid &&
+        miFormulario.get('nombre')?.touched
+      "
+    >
+      El nombre es requerido
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      placeholder="Ingresa tu email"
+    />
+    <div
+      *ngIf="
+        miFormulario.get('email')?.invalid && miFormulario.get('email')?.touched
+      "
+    >
+      Ingresa un email válido
+    </div>
+  </div>
+
+  <div>
+    <label for="mensaje">Mensaje:</label>
+    <textarea
+      id="mensaje"
+      formControlName="mensaje"
+      placeholder="Ingresa tu mensaje"
+    ></textarea>
+  </div>
+
+  <button type="submit" [disabled]="miFormulario.invalid">Enviar</button>
+</form>
+
+<div *ngIf="mensajeExito" class="exito">
+  {{ mensajeExito }}
+</div>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>

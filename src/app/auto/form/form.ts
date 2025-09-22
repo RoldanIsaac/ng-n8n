@@ -20,7 +20,7 @@ export class Form {
   error: string = '';
 
   apiUrl =
-    'https://olimedia.app.n8n.cloud/webhook-test/d3237f8f-28db-406a-b0c1-7d9a7d672a54';
+    'https://lisaac10.app.n8n.cloud/webhook-test/7bbf9732-ba75-4182-9b6c-1225a7a15ba3';
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.miFormulario = this.fb.group({
@@ -31,9 +31,10 @@ export class Form {
   }
 
   onSubmit() {
-    if (this.miFormulario.valid) {
+    if (!this.miFormulario.valid) {
       return;
     }
+
     const formData = this.miFormulario.value;
 
     this.http.post(this.apiUrl, formData).subscribe({
